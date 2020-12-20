@@ -26,13 +26,13 @@ def boan():
         print(boan_final)     
         boan_saved = boan_final                                                    # 출력한 URL을 전에 출력했던 URL과 비교해주는 변수
             
-        threading.Timer(300, boan).start()                                          # (@초 마다, 실행할것)
+        threading.Timer(300, boan).start()                                         # (@초 마다, 실행할것)
     else:
         print("동일 URL")
         threading.Timer(300, boan).start()
         
 print('start')
-boan()
+#boan()
 
 
 def Daily():
@@ -42,19 +42,14 @@ def Daily():
         Daily_extract = Daily_query.find("div",{"class":"list-titles"})
         Daily_finalextract = Daily_extract.find('a')
 
-        Daily_urlpar=re.findall('href="(.+)"',str(Daily_finalextract))                 
+        Daily_urlpar=re.findall('"(.+)" ',str(Daily_finalextract))                 
         Daily_strmove=(''.join(Daily_urlpar))                                         
 
         Daily_final = ('https://www.dailysecu.com/'+Daily_strmove)                     # 동일 URL일 경우에만 출력하게 만들기 1단계로, 변수화
 
-        #print(Daily_finalextract)
-        #print(Daily_urlpar)
-        
-        
         print(Daily_final)
 
 #Daily()
-#이어서 할 일 :  URL 뒷부분 없애기 정규표현식으로
 
 
 def bird():
@@ -84,7 +79,7 @@ def ES():
 
         ES_final = ('https://blog.alyac.co.kr/'+ES_strmov)
 
-
+        print(ES_urlpar)
         print(ES_final)
 
 #ES()
@@ -95,17 +90,16 @@ def ES2():
         ES2_extract = ES2_query.find("div",{"class":"list_wrap"})
         ES2_finalextract = ES2_extract.find("a",{})
 
-        ES2_urlpar=re.findall('href="(.+)"',str(ES2_finalextract))
+        ES2_urlpar=re.findall('"(.+?=[0-9]+)+',str(ES2_finalextract))
         ES2_strmov=(''.join(ES2_urlpar))
         
 
-        ES2_final = ('https://blog.alyac.co.kr/'+ES2_strmov)
+        ES2_final = ('https://blog.alyac.co.kr'+ES2_strmov)
 
 
         print(ES2_final) 
 
 #ES2()
-#이어서 할 일 :  URL 뒷부분 없애기 정규표현식으로
 
 def ahn():
 
@@ -116,14 +110,12 @@ def ahn():
     ahn_extract = ahn_query.find("div",{"class":"post-archive-wrap"})
     ahn_finalextract = ahn_extract.find("a",{})
     
-    ahn_urlpar=re.findall('href="(.+)"',str(ahn_finalextract))
+    ahn_urlpar=re.findall('"(.+[0-9])+',str(ahn_finalextract))
     ahn_strmov=(''.join(ahn_urlpar))
 
+    print(ahn_strmov)
 
     #ahn_final = ('https://blog.alyac.co.kr/'+ahn_strmov)
-    print(ahn_strmov)
-#이어서 할 일 :  URL 뒷부분 없애기 정규표현식으로
-
 #ahn()
 
 
